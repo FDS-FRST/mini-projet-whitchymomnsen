@@ -12,7 +12,39 @@ public class Main {
         }
         return personnagesForPlayer;
     }
+    public static Personnage choisirParNumero(Scanner sc, Personnage[] equipe, String nomJoueur, String message) {
+        Personnage choixPerso = null;
 
+        while (choixPerso == null) {
+            System.out.println("\n" + nomJoueur + ", " + message);
+
+            for (int i = 0; i < equipe.length; i++) {
+                System.out.println((i + 1) + ". ******** " +
+                        " (vie : " + equipe[i].getVie() + ")");
+            }
+
+            System.out.print("Numéro : ");
+
+            if (!sc.hasNextInt()) {
+                sc.nextLine();
+                System.out.println("Entrez un numéro valide.");
+                continue;
+            }
+            int num = sc.nextInt();
+            sc.nextLine();
+
+            if (num < 1 || num > equipe.length) {
+                System.out.println("Numéro invalide.");
+                continue;
+            }
+            if (!equipe[num - 1].estVivant()) {
+                System.out.println("Ce personnage est déjà mort !");
+                continue;
+            }
+            choixPerso = equipe[num - 1];
+        }
+        return choixPerso;
+    }
 
     public static void main(String[] args) {
         System.out.println("Bienvenue dans le jeu combat !\n");

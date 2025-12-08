@@ -4,10 +4,10 @@ public class Personnage {
     private int attaque;
 
     // Constructor
-    public Personnage(String nom, int vie, int attaque) {
+    public Personnage(String nom) {
         this.nom = nom;
-        this.vie = vie;
-        this.attaque = attaque;
+        this.vie = 100;
+        this.attaque = 20;
     }
 
     // Getters and Setters

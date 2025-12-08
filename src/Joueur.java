@@ -1,4 +1,4 @@
 public class Joueur{
-    private name;
+    private String name;
 
 }

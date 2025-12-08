@@ -25,13 +25,37 @@ public class Main {
         System.out.println();
         System.out.println(nameOfPLayer1 + ", crée ton équipe");
         Personnage[] personnagesForPlayer1 = createPersonnage();
+        Joueur joueur1 = new Joueur(nameOfPLayer1, personnagesForPlayer1);
 
         System.out.println();
         System.out.println(nameOfPLayer2 + ", crée ton équipe");
         Personnage[] personnagesForPlayer2 = createPersonnage();
+        Joueur joueur2 = new Joueur(nameOfPLayer2, personnagesForPlayer2);
 
+        int tour = 1;
 
+        while(joueur1.aEncoreDesPersonnagesVivants() && joueur2.aEncoreDesPersonnagesVivants()){
+            System.out.println("--- Tour "+tour+" ---");
+            System.out.print(nameOfPLayer1 + " choisit ton attaquant : ");
+            String attaquant = sc.nextLine();
 
+            while(true){
+                for (Personnage p : personnagesForPlayer1) {
+                    if (p.getNom().equals(attaquant.trim())){
+                        break;
+                    }else {
+                        System.out.print(nameOfPLayer1 + " choisit ton attaquant : ");
+                        attaquant = sc.nextLine();
+                    }
+                }
+            }
+
+//           for  (Personnage p : personnagesForPlayer2) {
+//                if (p.getVie() > 0 ){
+//
+//                }
+//           }
+        }
 
     }
 }

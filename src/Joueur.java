@@ -8,6 +8,22 @@ public class Joueur{
         this.equipe = equipe;
     }
 
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public Personnage[] getEquipe() {
+        return equipe;
+    }
+
+    public void setEquipe(Personnage[] equipe) {
+        this.equipe = equipe;
+    }
+
     public Personnage choisirPersonnageVivant() {
         for (int i = 0; i < 3; i++) {
             if (this.equipe[i].getVie() < 0) {

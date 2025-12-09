@@ -12,14 +12,14 @@ public class Main {
         }
         return personnagesForPlayer;
     }
-    public static Personnage choisirParNumero(Scanner sc, Personnage[] equipe, String nomJoueur, String message) {
+    public static Personnage choseByNumber(Scanner sc, Personnage[] equipe, String nomJoueur, String message) {
         Personnage choixPerso = null;
 
         while (choixPerso == null) {
             System.out.println("\n" + nomJoueur + ", " + message);
 
             for (int i = 0; i < equipe.length; i++) {
-                System.out.println((i + 1) + ". ******** " +
+                System.out.println((i + 1) + " : " + equipe[i].getNom()+
                         " (vie : " + equipe[i].getVie() + ")");
             }
 
@@ -68,26 +68,40 @@ public class Main {
 
         while(joueur1.aEncoreDesPersonnagesVivants() && joueur2.aEncoreDesPersonnagesVivants()){
             System.out.println("--- Tour "+tour+" ---");
-            System.out.print(nameOfPLayer1 + " choisit ton attaquant : ");
-            String attaquant = sc.nextLine();
+            Personnage attaquant1 = choseByNumber(sc, personnagesForPlayer1, joueur1.getNom(), "choisis ton attaquant");
+            Personnage target1 = choseByNumber(sc, personnagesForPlayer2, joueur1.getNom(), "choisis ta cible");
 
-            while(true){
-                for (Personnage p : personnagesForPlayer1) {
-                    if (p.getNom().equals(attaquant.trim())){
-                        break;
-                    }else {
-                        System.out.print(nameOfPLayer1 + " choisit ton attaquant : ");
-                        attaquant = sc.nextLine();
-                    }
-                }
+            attaquant1.attaquer(target1);
+            System.out.println(joueur1.getNom() + " attaque " + target1.getNom());
+            System.out.println(target1.getNom() + " perd 20 points de vie.");
+
+            if (!joueur2.aEncoreDesPersonnagesVivants()) {
+                break;
             }
 
-//           for  (Personnage p : personnagesForPlayer2) {
-//                if (p.getVie() > 0 ){
-//
-//                }
-//           }
+            joueur1.afficherEquipe();
+            joueur2.afficherEquipe();
+
+            Personnage attaquant2 = choseByNumber(sc, personnagesForPlayer1, joueur2.getNom(), "choisis ton attaquant");
+            Personnage cible2 = choseByNumber(sc, personnagesForPlayer2, joueur2.getNom(), "choisis ta cible");
+
+            attaquant2.attaquer(cible2);
+            System.out.println(joueur2.getNom() + " attaque " + cible2.getNom() + " !");
+            System.out.println(cible2.getNom() + " perd 20 points de vie.");
+
+            tour++;
         }
 
+        System.out.println("\n==============================");
+        System.out.println("          FIN DU JEU          ");
+        System.out.println("==============================\n");
+
+        if (joueur1.aEncoreDesPersonnagesVivants()) {
+            System.out.println("🏆 Victoire de " + joueur1.getNom() + " !");
+        } else {
+            System.out.println("🏆 Victoire de " + joueur2.getNom() + " !");
+        }
+
+        sc.close();
     }
 }

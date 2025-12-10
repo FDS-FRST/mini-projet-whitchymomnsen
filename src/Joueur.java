@@ -35,7 +35,7 @@ public class Joueur{
 
     public boolean aEncoreDesPersonnagesVivants(){
         for (int i = 0; i < 3; i++) {
-            if (this.equipe[i].getVie() < 0) {
+            if (this.equipe[i].getVie() > 0) {
                 return true;
             }
         }
@@ -43,8 +43,8 @@ public class Joueur{
     }
 
     public void afficherEquipe(){
+        System.out.println("Etat de l'equipe de "+this.nom+" :");
         for (int i = 0; i < 3; i++) {
-            System.out.println("Etat de l'equipe de "+this.nom+" :");
             System.out.println(this.equipe[i].getNom()+" - " +this.equipe[i].getVie()+" HP");
         }
     }

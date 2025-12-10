@@ -67,11 +67,13 @@ public class Main {
         int tour = 1;
 
         while(joueur1.aEncoreDesPersonnagesVivants() && joueur2.aEncoreDesPersonnagesVivants()){
+            System.out.println();
             System.out.println("--- Tour "+tour+" ---");
             Personnage attaquant1 = choseByNumber(sc, personnagesForPlayer1, joueur1.getNom(), "choisis ton attaquant");
             Personnage target1 = choseByNumber(sc, personnagesForPlayer2, joueur1.getNom(), "choisis ta cible");
 
             attaquant1.attaquer(target1);
+            System.out.println();
             System.out.println(joueur1.getNom() + " attaque " + target1.getNom());
             System.out.println(target1.getNom() + " perd 20 points de vie.");
 
@@ -80,10 +82,12 @@ public class Main {
             }
 
             joueur1.afficherEquipe();
+            System.out.println();
             joueur2.afficherEquipe();
 
-            Personnage attaquant2 = choseByNumber(sc, personnagesForPlayer1, joueur2.getNom(), "choisis ton attaquant");
-            Personnage cible2 = choseByNumber(sc, personnagesForPlayer2, joueur2.getNom(), "choisis ta cible");
+            // Toour du joueur 2
+            Personnage attaquant2 = choseByNumber(sc, personnagesForPlayer2, joueur2.getNom(), "choisis ton attaquant");
+            Personnage cible2 = choseByNumber(sc, personnagesForPlayer1, joueur2.getNom(), "choisis ta cible");
 
             attaquant2.attaquer(cible2);
             System.out.println(joueur2.getNom() + " attaque " + cible2.getNom() + " !");

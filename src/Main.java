@@ -37,7 +37,7 @@ public class Main {
                 System.out.println("Numéro invalide.");
                 continue;
             }
-            if (!equipe[num - 1].estVivant()) {
+            if (!equipe[num - 1].estVivant() && message.equalsIgnoreCase("choisis ton attaquant")) {
                 System.out.println("Ce personnage est déjà mort !");
                 continue;
             }
@@ -96,9 +96,9 @@ public class Main {
             tour++;
         }
 
-        System.out.println("\n==============================");
+        System.out.println("\n-----------------------------");
         System.out.println("          FIN DU JEU          ");
-        System.out.println("==============================\n");
+        System.out.println("-----------------------------\n");
 
         if (joueur1.aEncoreDesPersonnagesVivants()) {
             System.out.println("🏆 Victoire de " + joueur1.getNom() + " !");

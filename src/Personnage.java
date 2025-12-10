@@ -37,7 +37,11 @@ public class Personnage {
 
     // Methods
     public void attaquer(Personnage personnage){
-        personnage.setVie(personnage.getVie() - 20);
+        if (personnage.getVie() == 0){
+            personnage.setVie(0);
+        }else {
+            personnage.setVie(personnage.getVie() - 20);
+        }
     }
 
     public boolean estVivant(){
